@@ -153,6 +153,13 @@
             });
         });
         var api = {};
+        /**
+         * 是否有效
+         * isValueValid() //默认取input第一个元素
+         * isValueValid($inputObj);
+         * @param $inputObj
+         * @returns {*}
+         */
         api.isValueValid = function($inputObj) {
             if (typeof  ($inputObj) === "undefined") {
                 $inputObj = $inputObjs.eq(0);
