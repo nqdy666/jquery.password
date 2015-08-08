@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="password.css" rel="stylesheet"type="text/css">
+</head>
+<body>
+
+<div>
+    <input type="text" maxlength="6" id="mm"/>
+</div>
+<div>
+    <input type="text" maxlength="6" id="qrmm">
+</div>
+
+<div>
+    <button id="btn">点击查看是否合法</button>
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!--<script type="text/javascript" src="jquery-1.11.2.min.js"></script>-->
+<script type="text/javascript" src="jquery.password.js"></script>
+
+<script>
+    $(function() {
+        var $mmInput = $("#mm");
+        var $qrmmInput = $("#qrmm");
+
+//        $mmInput.pass();
+//        $qrmmInput.pass({checkingRule: function(num) {
+//            return $mmInput.val() === $qrmmInput.val();
+//        }});
+
+        var mmPass = $.QjzdPassWord($mmInput);
+        var qrmmPass = $.QjzdPassWord($qrmmInput, {checkingRule: function(num) {
+            var reg = /^\d{6}$/;
+            return $mmInput.val() === $qrmmInput.val() && reg.test($qrmmInput.val());
+        }});
+
+        $("#btn").click(function() {
+            alert(mmPass.isValueValid() + "   " + qrmmPass.isValueValid());
+        });
+    });
+</script>
+</html>
